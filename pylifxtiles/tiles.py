@@ -61,13 +61,13 @@ def split_combined_matrix(combined_matrix):
             tile1.append(temp_list[0])
             tile2.append(temp_list[1])
             tile3.append(temp_list[2])
-            tiles =  [tile1, tile2, tile3]
+            tiles = [tile1, tile2, tile3]
         if len(temp_list) == 4:
             tile1.append(temp_list[0])
             tile2.append(temp_list[1])
             tile3.append(temp_list[2])
             tile4.append(temp_list[3])
-            tiles =  [tile1, tile2, tile3, tile4]
+            tiles = [tile1, tile2, tile3, tile4]
         if len(temp_list) == 5:
             tile1.append(temp_list[0])
             tile2.append(temp_list[1])
@@ -183,7 +183,7 @@ def rotate90Clockwise(A):
 #https://stackoverflow.com/questions/19878280/efficient-way-to-shift-2d-matrices-in-both-directions
 NONE, UP, DOWN, LEFT, RIGHT = 'unshifted', 'up', 'down', 'left', 'right'
 
-def __shift(matrix, direction, dist):
+def shift(matrix, direction, dist):
     """ Shift a 2D matrix in-place the given distance of rows or columns in the
         specified (NONE, UP, DOWN, LEFT, RIGHT) direction and return it.
     """
@@ -219,7 +219,7 @@ def shift_image(tilechain, tile_num, direction, dist):
     # convert to 2D 8x8 matrix
     temp_matrix = list(map_to_matrix(tile_color[0], 8))
     # shift i
-    temp_matrix = __shift(temp_matrix, direction, dist)
+    temp_matrix = shift(temp_matrix, direction, dist)
     # convert back to 1D list
     target_tile_color = matrix_to_map(temp_matrix)
     # write back to source tile

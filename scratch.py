@@ -1,7 +1,7 @@
 
 from pylifxtiles.tiles import *
 from pylifxtiles import objects
-from pylifxtiles.tiles import __shift
+from pylifxtiles.tiles import shift
 
 my_word = 'Hello'
 target_tile = T1
@@ -22,12 +22,12 @@ y = combine_multiple_tiles(x)
 
 for i in range(40):
     #y = __shift(y, UP, 1)
-    y = __shift(y, LEFT, 1)
+    y = shift(y, LEFT, 1)
     target_tile.set_tilechain_colors(split_combined_matrix(y), rapid=True)
 
 for i in range(40):
-    y = __shift(y, UP, 1)
-    y = __shift(y, LEFT, 1)
+    y = shift(y, UP, 1)
+    y = shift(y, LEFT, 1)
     target_tile.set_tilechain_colors(split_combined_matrix(y))
 
 

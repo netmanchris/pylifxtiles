@@ -1,2 +1,3 @@
 lifxlan
 jupyter
+nose

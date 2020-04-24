@@ -35,7 +35,7 @@ test_tile = T2
 '''
 
 ### Section to test single tile functions
-class TestSingleTileFunctions(TestCase):
+class TestSingleTileRotateFunctions(TestCase):
     """
     Test Case for pylifxtiles.tiles single matrix transformation functions
     """
@@ -55,6 +55,13 @@ class TestSingleTileFunctions(TestCase):
         target_tile = tiles.matrix_to_map(target_tile)
         self.assertEqual(source_tile1, target_tile)
 
+
+###Section to test multiple tile functions
+class TestTileMoveFunctions(TestCase):
+    """
+    Test Case for pylifxtiles.tiles two matrix transformation functions
+    """
+
     def test_single_tile_shift_8_left(self):
         # convert to 2D 8x8 matrix
         target_tile = list(tiles.map_to_matrix(source_tile1, 8))
@@ -63,19 +70,6 @@ class TestSingleTileFunctions(TestCase):
         target_tile = tiles.matrix_to_map(target_tile)
         # write back to source tile
         self.assertEqual(source_tile1, target_tile)
-
-
-
-
-
-
-
-
-###Section to test multiple tile functions
-class TestTwoTileFunctions(TestCase):
-    """
-    Test Case for pylifxtiles.tiles single matrix transformation functions
-    """
 
     def test_shift_two_tile_16_left(self):
         #grab first 2 tiles from tilechain
@@ -87,12 +81,6 @@ class TestTwoTileFunctions(TestCase):
         target_tiles = tiles.split_combined_matrix(target_tiles)
         self.assertEqual(source_tiles, target_tiles)
 
-###Section to test multiple tile functions
-class TestThreeTileFunctions(TestCase):
-    """
-    Test Case for pylifxtiles.tiles single matrix transformation functions
-    """
-
     def test_shift_three_tile_24_left(self):
         #grab first 2 tiles from tilechain
         source_tiles = source_tilechain1[0:3]
@@ -102,12 +90,6 @@ class TestThreeTileFunctions(TestCase):
             target_tiles = tiles.shift(target_tiles, LEFT, 1)
         target_tiles = tiles.split_combined_matrix(target_tiles)
         self.assertEqual(source_tiles, target_tiles)
-
-###Section to test multiple tile functions
-class TestFourTileFunctions(TestCase):
-    """
-    Test Case for pylifxtiles.tiles single matrix transformation functions
-    """
 
     def test_shift_four_tile_32_left(self):
         #grab first 2 tiles from tilechain
@@ -119,13 +101,6 @@ class TestFourTileFunctions(TestCase):
         target_tiles = tiles.split_combined_matrix(target_tiles)
         self.assertEqual(source_tiles, target_tiles)
 
-
-###Section to test multiple tile functions
-class TestFiveTileFunctions(TestCase):
-    """
-    Test Case for pylifxtiles.tiles single matrix transformation functions
-    """
-
     def test_shift_five_tile_40_left(self):
         #convert to single 2D matrix
         target_tiles = tiles.combine_multiple_tiles(source_tilechain1)
@@ -133,3 +108,86 @@ class TestFiveTileFunctions(TestCase):
             target_tiles = tiles.shift(target_tiles, LEFT, 1)
         target_tiles = tiles.split_combined_matrix(target_tiles)
         self.assertEqual(source_tilechain1, target_tiles)
+
+
+###Section to test two_tileschain_functions
+class TestTwoTileChain_five_tile_transforms(TestCase):
+    '''
+    Test case for pylifx.tiles multiple
+    '''
+
+    def test_transform_2_tcs_back_and_forth(self):
+        #combine_single_tc_tiles
+        flatend_tc = tiles.combine_multiple_tiles(source_tilechain1)
+        #create list of multiple TCs from flatend_tc
+        tccombined = [flatend_tc]*2
+        #combine all tcs into a single list
+        tc_result = tiles.combine_tilechains(tccombined)
+        #split single list back into multiple tilechains
+        tcsplit = tiles.split_tilechains(tc_result)
+        self.assertEqual(tccombined,tcsplit)
+
+
+    def test_transform_3_tcs_back_and_forth(self):
+        #combine_single_tc_tiles
+        flatend_tc = tiles.combine_multiple_tiles(source_tilechain1)
+        tccombined = [flatend_tc]*3
+        tc_result = tiles.combine_tilechains(tccombined)
+        tcsplit = tiles.split_tilechains(tc_result)
+        self.assertEqual(tccombined,tcsplit)
+
+    def test_transform_4_tcs_back_and_forth(self):
+        #combine_single_tc_tiles
+        flatend_tc = tiles.combine_multiple_tiles(source_tilechain1)
+        tccombined = [flatend_tc]*4
+        tc_result = tiles.combine_tilechains(tccombined)
+        tcsplit = tiles.split_tilechains(tc_result)
+        self.assertEqual(tccombined,tcsplit)
+
+
+    def test_transform_5_tcs_back_and_forth(self):
+        #combine_single_tc_tiles
+        flatend_tc = tiles.combine_multiple_tiles(source_tilechain1)
+        tccombined = [flatend_tc]*5
+        tc_result = tiles.combine_tilechains(tccombined)
+        tcsplit = tiles.split_tilechains(tc_result)
+        self.assertEqual(tccombined,tcsplit)
+
+
+class TestMultipleTileChain_movesFunctions(TestCase):
+    '''
+    Test case for pylifx.tiles multiple
+    '''
+
+
+    def test_multiple_tiles_shift_40_left(self):
+        # combine_single_tc_tiles
+        flatend_tc = tiles.combine_multiple_tiles(source_tilechain1)
+        # create list of multiple TCs from flatend_tc
+        tccombined = [flatend_tc] * 2
+        # combine all tcs into a single list
+        tc_result = tiles.combine_tilechains(tccombined)
+        #shift the entire matrix left by 40
+        tc_result = tiles.shift(tc_result, LEFT, 40)
+        # split single list back into multiple tilechains
+        tcsplit = tiles.split_tilechains(tc_result)
+        self.assertEqual(tccombined, tcsplit)
+
+    def test_multiple_tiles_shift_16_down(self):
+        # combine_single_tc_tiles
+        flatend_tc = tiles.combine_multiple_tiles(source_tilechain1)
+        # create list of multiple TCs from flatend_tc
+        tccombined = [flatend_tc] * 2
+        # combine all tcs into a single list
+        tc_result = tiles.combine_tilechains(tccombined)
+        # shift the entire matrix left by 40
+        tc_result = tiles.shift(tc_result, DOWN, 16)
+        # split single list back into multiple tilechains
+        tcsplit = tiles.split_tilechains(tc_result)
+        self.assertEqual(tccombined, tcsplit)
+
+
+#tccombined =[tc1,tc1]
+#tc_result = combine_tilechains(tccombined)
+#tcsplit = split_tilechains(result_list)
+#tccombined == tcsplit

@@ -52,3 +52,6 @@ def test_split_matrix_brian(combined_matrix):
 
 #Another try
  #   https: // www.pythoncentral.io / how - to - slice - listsarrays - and -tuples - in -python /
+
+
+def combine_tilechains(list_of_tcs):

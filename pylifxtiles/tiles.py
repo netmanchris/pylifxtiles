@@ -81,6 +81,42 @@ def split_combined_matrix(combined_matrix):
         tc_color_map.append(temp)
     return tc_color_map
 
+#functions to work with multiple tcs
+
+def combine_tilechains(tilechain_list):
+    '''
+    Function which takes a tilechain_list as exported by combine_multiple_tiles()
+    :param tilechain_list:
+    :return:
+    '''
+    combined_tcs = []
+    for i in tilechain_list:
+        combined_tcs = [*combined_tcs,*i]
+    return combined_tcs
+
+def split_tilechains(combined_tilechain_list):
+    '''
+    Function which takes the output of combine_tilechain lists and splits into appropriate
+    number of 8xn tilechains
+    :param combined_tilechain_list:
+    :return: list of single tilechain lists in 8*n matrix format
+    '''
+    list_of_tcs = []
+
+    row = 0
+    num_chains = len(combined_tilechain_list)//8
+    for i in range(num_chains):
+        tile = (combined_tilechain_list[(row):(row + 8)])
+        row = row+8
+        list_of_tcs.append(tile)
+    return list_of_tcs
+
+
+
+
+
+
+### older functions which I think can be removed
 
 def combine_two_tiles(tile1, tile2):
     '''

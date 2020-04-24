@@ -1,3 +1,5 @@
 lifxlan
 jupyter
 nose
+matplotlib
+Pillow

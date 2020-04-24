@@ -42,6 +42,10 @@ def combine_multiple_tiles(list_of_tiles):
     return combined_tiles
 
 def split_combined_matrix(combined_matrix):
+    '''
+    :param combined_matrix: Output of combine_multiple_tiles(). NxN matrix.
+    :return:
+    '''
     tile1=[]
     tile2=[]
     tile3=[]

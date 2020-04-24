@@ -29,3 +29,26 @@ for i in range(40):
     y = __shift(y, UP, 1)
     y = __shift(y, LEFT, 1)
     target_tile.set_tilechain_colors(split_combined_matrix(y))
+
+
+
+
+def test_split_matrix_brian(combined_matrix):
+    #create empty list to hold tiles
+    tiles = []
+    #combined matrix is 8xn where n is divisible by 8
+    tile_count = len(combined_matrix[0]//8)
+    #columns = len(combined_matrix[0])
+    for n in range(tile_count):
+        #create new tile_list in tiles
+        tile = []
+        for r in range(8):
+            col = n*8
+            tile.append(combined_matrix[r][(col):(col+8)])
+        tiles.append(tile)
+        return tiles
+
+
+
+#Another try
+ #   https: // www.pythoncentral.io / how - to - slice - listsarrays - and -tuples - in -python /

@@ -29,7 +29,7 @@ setup(
         long_description=long_description,
 
         # The project's main homepage.
-        url='https://github.com/netmanchris',
+        url='https://github.com/netmanchris/pylifxtiles',
 
         # Author details
         author='netmanchris',

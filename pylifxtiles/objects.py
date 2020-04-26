@@ -1,5 +1,7 @@
 #file which represents objects which can be drawn by this library
 from pylifxtiles.colors import *
+from pylifxtiles.alphanum import *
+from pylifxtiles.actions import blank_tile
 
 
 #youtube logo single tile
@@ -38,4 +40,12 @@ def draw_moon(tilechain, tile):
         my_colors[i] = (0, 0, 0, 1500)
     for led in moon['yellow']:
         my_colors[led] = (yellow, 65535, fourty, 4900)
+    tilechain.set_tile_colors(tile, my_colors)
+
+
+def draw_letter(tilechain, tile, letter):
+    letter = alpha[letter]
+    my_colors = actions.blank_tile()
+    for led in letter:
+        my_colors[led] = my_colors[led] = (colors.dblue, 65535, colors.fourty, 4900)
     tilechain.set_tile_colors(tile, my_colors)

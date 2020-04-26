@@ -34,7 +34,7 @@ def main():
                 T4 = tile
     tc_list = [T1, T2, T3, T4]
     try:
-        display_image(source_image, tc_list)
+        display_image(source_image, (40, 32), tc_list)
     except KeyboardInterrupt:
         print("Done.")
 
@@ -42,13 +42,13 @@ def main():
 # combined function
 
 # resize image and force a new shape and save to disk
-def display_image(image_to_display, tilechain_list):
+def display_image(image_to_display, image_size, tilechain_list):
     # load the image
     my_image = Image.open(image_to_display)
     # report the size of the image
     # print(my_image.size)
     # resize image and ignore original aspect ratio
-    img_resized = my_image.resize((40, 32))
+    img_resized = my_image.resize(image_size)
     # changing the file extension from jpg to png changes output brightness. You might need to play with this.
     img_resized.save('./images/resized_image.jpg')
     data = image.imread('./images/resized_image.jpg')
@@ -58,11 +58,13 @@ def display_image(image_to_display, tilechain_list):
         for pixel in row:
             temp_row.append(RGBtoHSBK(pixel))
         target_tcs.append(temp_row)
+    # print ("length of target_tcs is " + str(len(target_tcs)))
     tcsplit = tiles.split_tilechains(target_tcs)
-    tilechain_list[0].set_tilechain_colors(tiles.split_combined_matrix(tcsplit[0]), rapid=True)
-    tilechain_list[1].set_tilechain_colors(tiles.split_combined_matrix(tcsplit[1]), rapid=True)
-    tilechain_list[2].set_tilechain_colors(tiles.split_combined_matrix(tcsplit[2]), rapid=True)
-    tilechain_list[3].set_tilechain_colors(tiles.split_combined_matrix(tcsplit[3]), rapid=True)
+    # print ("legnth of tcssplit is " + str(len(tcsplit)))
+    # print ("length tilelist is " + str(len(tilechain_list)))
+    for tile in range(len(tilechain_list)):
+        #print(tile)
+        tilechain_list[tile].set_tilechain_colors(tiles.split_combined_matrix(tcsplit[tile]), rapid=True)
 
 
 if __name__ == "__main__":

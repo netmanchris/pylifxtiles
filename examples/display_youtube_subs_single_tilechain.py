@@ -1,12 +1,10 @@
 import requests
-import json
 import inflect
 #create a file called secrets.py and place your googleAPI key in a var called youtube_api_key DO NOT POSTS THIS TO GITHUB
-from secrets import youtube_api_key
 from lifxlan import *
 # from random import randint, betavariate
 from time import sleep
-from secrets import youtube_api_key
+from examples.secrets import youtube_api_key
 from pylifxtiles import actions
 from pylifxtiles import objects
 from pylifxtiles.alphanum import nums

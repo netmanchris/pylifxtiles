@@ -1,16 +1,18 @@
 from pylifxtiles.alphanum import *
+from pylifxtiles.colors import *
 
 
-def write_word(word, tilechain):
+def write_word(word, color, tilechain):
     """
     Function to automatically
     :param word:
     :param tilechain:
     :return:
     """
+    original_colors = reset_tiles(tilechain)
     for letter in word.lower():
         for led in alpha[letter]:
-            original_colors[0][led] = (blue, 65535, twenty, 4900)
+            original_colors[0][led] = (color, 65535, twenty, 4900)
     tilechain.set_tilechain_colors(original_colors, )
 
 #function to reset the tiles to a blank/off state

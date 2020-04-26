@@ -1,6 +1,12 @@
 
 # Todo List
 
+- clean up root of project
+- structure library
+- post library to pypi
+- make github repo public
+
+
 List of things I'd like to add to this project over time.
 
 - Add display image function to python library

@@ -1,5 +1,8 @@
 from pylifxtiles.alphanum import *
 from pylifxtiles.colors import *
+from matplotlib import image
+from PIL import Image
+from PIL import GifImagePlugin
 
 
 def write_word(word, color, tilechain):

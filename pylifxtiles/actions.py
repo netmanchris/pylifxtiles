@@ -33,3 +33,71 @@ def blank_tile():
     for i in range(0,64):
         blank_tile[i] = (0, 0, 0, 1500)
     return blank_tile
+
+
+def display_jpg_image(image_to_display, image_size, tilechain_list):
+    """
+    Function which takes a jpg image and transforms to display over a ordered (top to bottom)
+    set of LIFX tiles
+    :param image_to_display: str of relative path to source jpg image
+    :param image_size: tuple of len 2 - size of lifx tiles in Y by X quadrant example (40,56) would be
+    7 5 tile tilechains on top of each other.
+    :param tilechain_list: list of LIFX Tile objects top to bottom [T1, T2, T3]
+    :return: None
+    """
+    # load the image
+    my_image = Image.open(image_to_display)
+    # report the size of the image
+    # print(my_image.size)
+    # resize image and ignore original aspect ratio
+    img_resized = my_image.resize(image_size)
+    # changing the file extension from jpg to png changes output brightness. You might need to play with this.
+    img_resized.save('./images/resized_image.jpg')
+    data = image.imread('./images/resized_image.jpg')
+    target_tcs = []
+    for row in data:
+        temp_row = []
+        for pixel in row:
+            temp_row.append(RGBtoHSBK(pixel))
+        target_tcs.append(temp_row)
+    # print ("length of target_tcs is " + str(len(target_tcs)))
+    tcsplit = tiles.split_tilechains(target_tcs)
+    # print ("legnth of tcssplit is " + str(len(tcsplit)))
+    # print ("length tilelist is " + str(len(tilechain_list)))
+    for tile in range(len(tilechain_list)):
+        print(tile)
+        tilechain_list[tile].set_tilechain_colors(tiles.split_combined_matrix(tcsplit[tile]), rapid=True)
+
+
+def display_png_image(image_to_display, image_size, tilechain_list):
+    """
+    Function which takes a png image and transforms to display over a ordered (top to bottom)
+    set of LIFX tiles
+    :param image_to_display: str of relative path to source png image
+    :param image_size: tuple of len 2 - size of lifx tiles in Y by X quadrant example (40,56) would be
+    7 5 tile tilechains on top of each other.
+    :param tilechain_list: list of LIFX Tile objects top to bottom [T1, T2, T3]
+    :return: None
+    """
+    # load the image
+    my_image = Image.open(image_to_display)
+    # report the size of the image
+    # print(my_image.size)
+    # resize image and ignore original aspect ratio
+    img_resized = my_image.resize(image_size)
+    # changing the file extension from jpg to png changes output brightness. You might need to play with this.
+    img_resized.save('./images/resized_image.png')
+    data = image.imread('./images/resized_image.png')
+    target_tcs = []
+    for row in data:
+        temp_row = []
+        for pixel in row:
+            temp_row.append(RGBtoHSBK(pixel))
+        target_tcs.append(temp_row)
+    # print ("length of target_tcs is " + str(len(target_tcs)))
+    tcsplit = tiles.split_tilechains(target_tcs)
+    # print ("legnth of tcssplit is " + str(len(tcsplit)))
+    # print ("length tilelist is " + str(len(tilechain_list)))
+    for tile in range(len(tilechain_list)):
+        print(tile)
+        tilechain_list[tile].set_tilechain_colors(tiles.split_combined_matrix(tcsplit[tile]), rapid=True)

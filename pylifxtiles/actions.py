@@ -2,6 +2,7 @@ from pylifxtiles.alphanum import *
 from pylifxtiles.colors import *
 from matplotlib import image
 from PIL import Image
+from lifxlan.utils import RGBtoHSBK
 from PIL import GifImagePlugin
 
 

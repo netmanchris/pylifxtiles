@@ -1,8 +1,11 @@
 from pylifxtiles.alphanum import *
 from pylifxtiles.colors import *
+from pylifxtiles import tiles
 from matplotlib import image
 from PIL import Image
 from lifxlan.utils import RGBtoHSBK
+from numpy import asarray
+
 from PIL import GifImagePlugin
 
 
@@ -56,8 +59,7 @@ def display_jpg_image(image_to_display, image_size, tilechain_list):
     # resize image and ignore original aspect ratio
     img_resized = my_image.resize(image_size)
     # changing the file extension from jpg to png changes output brightness. You might need to play with this.
-    img_resized.save('./images/resized_image.jpg')
-    data = image.imread('./images/resized_image.jpg')
+    data = asarray(image)
     target_tcs = []
     for row in data:
         temp_row = []
@@ -90,8 +92,7 @@ def display_png_image(image_to_display, image_size, tilechain_list):
     # resize image and ignore original aspect ratio
     img_resized = my_image.resize(image_size)
     # changing the file extension from jpg to png changes output brightness. You might need to play with this.
-    img_resized.save('./images/resized_image.png')
-    data = image.imread('./images/resized_image.png')
+    data = asarray(image)
     target_tcs = []
     for row in data:
         temp_row = []

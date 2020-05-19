@@ -59,7 +59,8 @@ def display_jpg_image(image_to_display, image_size, tilechain_list):
     # resize image and ignore original aspect ratio
     img_resized = my_image.resize(image_size)
     # changing the file extension from jpg to png changes output brightness. You might need to play with this.
-    data = asarray(image)
+    img_resized.save('./resized_image.jpg')
+    data = image.imread('./resized_image.jpg')
     target_tcs = []
     for row in data:
         temp_row = []
@@ -68,7 +69,7 @@ def display_jpg_image(image_to_display, image_size, tilechain_list):
         target_tcs.append(temp_row)
     # print ("length of target_tcs is " + str(len(target_tcs)))
     tcsplit = tiles.split_tilechains(target_tcs)
-    # print ("legnth of tcssplit is " + str(len(tcsplit)))
+    # print ("length of tcssplit is " + str(len(tcsplit)))
     # print ("length tilelist is " + str(len(tilechain_list)))
     for tile in range(len(tilechain_list)):
         print(tile)
@@ -92,7 +93,8 @@ def display_png_image(image_to_display, image_size, tilechain_list):
     # resize image and ignore original aspect ratio
     img_resized = my_image.resize(image_size)
     # changing the file extension from jpg to png changes output brightness. You might need to play with this.
-    data = asarray(image)
+    img_resized.save('./resized_image.png')
+    data = image.imread('./resized_image.png')
     target_tcs = []
     for row in data:
         temp_row = []

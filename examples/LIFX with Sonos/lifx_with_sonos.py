@@ -30,7 +30,7 @@ def main():
     try:
         while (True):
             if target_speaker == None:
-                target_speaker = book = soco.SoCo(my_speaker_ip)
+                target_speaker = soco.SoCo(my_speaker_ip)
             if last_track == None:
                 print("Last Track Path")
                 last_track = target_speaker.get_current_track_info()['title']

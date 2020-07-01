@@ -1,0 +1,16 @@
+
+#Follow the OpenCV Docs
+brew
+
+Grab the version of cmake
+https://cmake.org/download/
+
+
+Goal is to take a a movie and convert it into jpg images to be displayed on the Tiles
+
+
+Tutorials
+https://docs.opencv.org/master/dc/d71/tutorial_py_optimization.html
+
+https://medium.com/@ODSC/the-beginners-guide-for-video-processing-with-opencv-4e39795b942a
+

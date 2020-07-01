@@ -59,7 +59,7 @@ def display_jpg_image(image_to_display, image_size, tilechain_list):
     # resize image and ignore original aspect ratio
     img_resized = my_image.resize(image_size)
     # changing the file extension from jpg to png changes output brightness. You might need to play with this.
-    data = asarray(image)
+    data = asarray(img_resized)
     target_tcs = []
     for row in data:
         temp_row = []
